@@ -1,14 +1,18 @@
 # EcoMirror 🌱
 
-EcoMirror is a Carbon Footprint Awareness Platform built for **PromptWars Virtual Challenge 3**.
+EcoMirror is a **Carbon Footprint Awareness Platform** built for **PromptWars Virtual Challenge 3**.
 
-The project helps individuals understand, track, and reduce their carbon footprint through simple inputs, visual awareness, personalized insights, and weekly action plans.
+The project helps individuals understand, track, and reduce their carbon footprint through simple inputs, visual awareness, personalized insights, analytics, and weekly action plans.
 
-Unlike a basic carbon calculator, EcoMirror focuses on making carbon data more visible and emotionally understandable. The app turns user choices into a changing “EcoMirror world” so users can see how their daily habits affect the environment.
+Unlike a basic carbon calculator, EcoMirror focuses on making carbon data more visible and emotionally understandable. It turns daily lifestyle choices into a changing “EcoMirror world” so users can see how their habits affect the environment.
+
+---
 
 ## Live Demo
 
 🌐 Deployed App: https://ecomirror-app.vercel.app/
+
+---
 
 ## GitHub Repository
 
@@ -26,7 +30,9 @@ Design a solution that helps individuals understand, track, and reduce their car
 
 ## Solution Overview
 
-EcoMirror allows users to enter daily lifestyle details such as travel, electricity use, food habits, shopping, waste, and flights. Based on these inputs, the app calculates an estimated carbon footprint and translates it into:
+EcoMirror allows users to enter daily lifestyle details such as travel, electricity use, food habits, shopping, waste, and flights.
+
+Based on these inputs, the app calculates an estimated carbon footprint and translates it into:
 
 * Category-wise emission breakdown
 * Real-world impact messages
@@ -60,10 +66,10 @@ The calculator gives a total estimated footprint along with a category-wise brea
 EcoMirror changes the visual environment based on the user’s footprint level.
 
 * Low footprint: cleaner, greener environment
-* Moderate footprint: balanced warning state
+* Moderate footprint: warning state
 * High footprint: polluted and stressed environment
 
-This makes the carbon impact easier to understand than just showing numbers.
+This makes the carbon impact easier to understand than only showing numbers.
 
 ### 3. Awareness Engine
 
@@ -75,9 +81,10 @@ The dashboard shows:
 
 * Weekly CO₂ trend
 * Category-wise breakdown
-* Average footprint
-* Highest emission category
-* Progress indicators
+* Daily average footprint
+* Weekly total footprint
+* Biggest emission source
+* Monthly estimate
 
 Demo data is included so the dashboard is meaningful immediately when the app opens.
 
@@ -100,7 +107,7 @@ The app generates simple weekly actions based on the user’s highest footprint 
 
 ### 7. Community Challenge Preview
 
-EcoMirror includes a demo leaderboard to show how social accountability can encourage sustainable behavior among groups such as students, hostel floors, teams, or communities.
+EcoMirror includes a demo leaderboard to show how social accountability can encourage sustainable behavior among groups such as students, hostels, teams, or communities.
 
 ### 8. AI Usage and Methodology Section
 
@@ -121,6 +128,8 @@ The app includes a dedicated section explaining:
 * JavaScript
 * Chart.js
 * LocalStorage
+* Vitest
+* jsdom
 * Vercel
 * GitHub
 
@@ -152,42 +161,53 @@ LocalStorage
 
 ```txt
 EcoMirror/
-├── index.html
-├── README.md
-├── .gitignore
-│
 ├── assets/
-│   ├── logo.svg
-│   └── preview.png
+│   └── logo.svg
 │
 ├── css/
 │   └── style.css
 │
-└── js/
-    ├── app.js
-    ├── carbonCalculator.js
-    ├── awarenessEngine.js
-    ├── ecoMirror.js
-    ├── actionPlanner.js
-    ├── analytics.js
-    ├── sampleData.js
-    └── storage.js
+├── js/
+│   ├── actionPlanner.js
+│   ├── analytics.js
+│   ├── app.js
+│   ├── awarenessEngine.js
+│   ├── carbonCalculator.js
+│   ├── ecoMirror.js
+│   ├── sampleData.js
+│   └── storage.js
+│
+├── tests/
+│   ├── actionPlanner.test.js
+│   ├── analytics.test.js
+│   ├── awarenessEngine.test.js
+│   ├── carbonCalculator.test.js
+│   ├── ecoMirror.test.js
+│   ├── sampleData.test.js
+│   └── storage.test.js
+│
+├── index.html
+├── README.md
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── vitest.config.cjs
 ```
 
 ---
 
 ## Carbon Calculation Methodology
 
-EcoMirror uses estimated emission factors for different lifestyle activities.
+EcoMirror uses simplified emission factors for different lifestyle activities.
 
 Example categories:
 
-* Car travel
+* Car or bike travel
 * Public transport
 * Electricity usage
-* Meat-based meals
+* Meat-heavy meals
 * Vegetarian meals
-* Shopping frequency
+* Shopping or online orders
 * Waste and recycling habits
 * Flights
 
@@ -209,7 +229,55 @@ This helps users and evaluators see:
 * Leaderboard preview
 * Action recommendations
 
-User-submitted data can be saved locally using LocalStorage.
+User-submitted data is saved locally in the browser using LocalStorage.
+
+---
+
+## Testing
+
+EcoMirror includes automated unit tests using **Vitest** and **jsdom**.
+
+Tested modules:
+
+* Carbon footprint calculation
+* Emission factor validation
+* Footprint level classification
+* Real-world impact message generation
+* Personalized nudge generation
+* EcoMirror visual state updates
+* Category-based action planning
+* Dashboard analytics helpers
+* Demo data validation
+* LocalStorage save, load, and reset behavior
+* Community leaderboard rendering
+
+Current test results:
+
+```txt
+Test Files  7 passed (7)
+Tests       40 passed (40)
+```
+
+To run tests locally:
+
+```bash
+npm install
+npm test
+```
+
+To run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+To run coverage:
+
+```bash
+npm run coverage
+```
+
+Testing was added to verify the reliability of the core calculation, awareness, storage, dashboard, and recommendation logic.
 
 ---
 
@@ -217,9 +285,7 @@ User-submitted data can be saved locally using LocalStorage.
 
 This project was built with assistance from **ChatGPT** and **GitHub Copilot**.
 
-### Tools Used
-
-#### ChatGPT
+### ChatGPT
 
 ChatGPT was used for:
 
@@ -234,27 +300,27 @@ ChatGPT was used for:
 * Improving README documentation
 * Drafting LinkedIn post content
 * Explaining AI usage and prompt flow
+* Improving testing strategy
 
-#### GitHub Copilot
+### GitHub Copilot
 
 GitHub Copilot was used for:
 
 * Faster code completion
 * Repetitive JavaScript patterns
 * UI logic suggestions
-* Improving implementation speed
-* Assisting with function structure
-* Reducing manual typing during development
+* Function structure assistance
+* Reducing manual typing during implementation
 
 ---
 
 ## Why These AI Tools Were Selected
 
-ChatGPT was selected because it is useful for high-level reasoning, idea refinement, architecture planning, and documentation.
+ChatGPT was selected because it is useful for high-level reasoning, idea refinement, architecture planning, testing strategy, and documentation.
 
 GitHub Copilot was selected because it helps speed up implementation inside the code editor through intelligent code suggestions and autocomplete.
 
-Together, these tools helped reduce development time while still allowing the developer to make the final product, design, and implementation decisions.
+Together, these tools helped reduce development time while still allowing the developer to make the final product, design, testing, and implementation decisions.
 
 ---
 
@@ -275,7 +341,9 @@ The prompt flow evolved through these stages:
 7. Adding a visual world that reacts to footprint levels
 8. Adding personalized nudges and weekly action plans
 9. Adding AI usage documentation
-10. Preparing deployment and submission materials
+10. Adding unit tests for core JavaScript logic
+11. Expanding tests for storage, analytics, sample data, action planning, and EcoMirror UI behavior
+12. Preparing deployment and submission materials
 
 ---
 
@@ -291,13 +359,14 @@ Human contribution included:
 * Implementing and customizing the UI
 * Reviewing AI-assisted suggestions
 * Editing and organizing code
-* Testing the web application
+* Testing the web application manually
+* Adding and running automated tests
 * Deploying the app on Vercel
 * Managing the GitHub repository
 * Preparing the final submission links
 * Writing and reviewing the LinkedIn submission post
 
-AI tools supported the process, but the final decisions, testing, customization, and submission were handled manually.
+AI tools supported the process, but the final decisions, testing, customization, deployment, and submission were handled manually.
 
 ---
 
@@ -308,10 +377,11 @@ The project uses:
 * Separate JavaScript files for better organization
 * Clear function-based logic
 * LocalStorage for lightweight persistence
-* Chart.js for efficient visual analytics
+* Chart.js for visual analytics
 * No backend dependency
 * No sensitive environment variables
 * Small repository size suitable for submission
+* Automated tests for core logic and browser behavior
 
 ---
 
@@ -320,12 +390,13 @@ The project uses:
 EcoMirror includes:
 
 * Clear section headings
+* Semantic HTML structure
 * Readable text contrast
 * Button labels
-* Simple navigation
+* Form labels for inputs
 * Responsive layout
 * Visual and text-based feedback
-* Form labels for user inputs
+* Navigation with accessible labels
 
 ---
 
@@ -334,6 +405,22 @@ EcoMirror includes:
 The app does not collect personal information or require login.
 
 Data is stored locally in the user’s browser using LocalStorage. No private user data is sent to a server.
+
+The project does not expose API keys, tokens, passwords, or environment variables.
+
+---
+
+## Efficiency Considerations
+
+EcoMirror is lightweight because it uses:
+
+* Static HTML, CSS, and JavaScript
+* LocalStorage instead of a backend database
+* Chart.js through CDN
+* Small modular JavaScript files
+* No heavy framework or build system for the deployed app
+
+This keeps the app fast, simple, and suitable for Vercel static deployment.
 
 ---
 
@@ -361,9 +448,35 @@ git clone https://github.com/vyomdwivedicoder/EcoMirror.git
 cd EcoMirror
 ```
 
-3. Open `index.html` in a browser.
+3. Install dependencies for testing:
+
+```bash
+npm install
+```
+
+4. Run tests:
+
+```bash
+npm test
+```
+
+5. Open `index.html` in a browser.
 
 No backend setup is required.
+
+---
+
+## Vercel Deployment Notes
+
+This project is a static web application.
+
+Vercel can deploy it directly from the GitHub repository using:
+
+* Framework Preset: Other
+* Build Command: None
+* Output Directory: Root directory
+
+The app runs directly from `index.html`.
 
 ---
 

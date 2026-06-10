@@ -37,3 +37,10 @@ function updateEcoMirror(result) {
   mirrorDescription.textContent = copy.description;
   impactEquivalent.textContent = generateImpactEquivalent(result.total);
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    updateEcoMirror
+  };
+}

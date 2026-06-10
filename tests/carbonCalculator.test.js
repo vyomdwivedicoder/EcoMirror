@@ -1,11 +1,24 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
+
 const {
+  EMISSION_FACTORS,
+  roundToOne,
   calculateFootprint,
-  getFootprintLevel,
-  roundToOne
+  getFootprintLevel
 } = require("../js/carbonCalculator.js");
 
 describe("carbonCalculator", () => {
+  it("contains required emission factors", () => {
+    expect(EMISSION_FACTORS).toHaveProperty("carKm");
+    expect(EMISSION_FACTORS).toHaveProperty("publicKm");
+    expect(EMISSION_FACTORS).toHaveProperty("electricityKwh");
+    expect(EMISSION_FACTORS).toHaveProperty("meatMeal");
+    expect(EMISSION_FACTORS).toHaveProperty("vegMeal");
+    expect(EMISSION_FACTORS).toHaveProperty("shoppingItem");
+    expect(EMISSION_FACTORS).toHaveProperty("flight");
+    expect(EMISSION_FACTORS).toHaveProperty("waste");
+  });
+
   it("rounds values to one decimal place", () => {
     expect(roundToOne(12.34)).toBe(12.3);
     expect(roundToOne(12.36)).toBe(12.4);
@@ -43,6 +56,51 @@ describe("carbonCalculator", () => {
     });
 
     expect(result.total).toBeGreaterThanOrEqual(0);
+    expect(result.transport).toBeGreaterThanOrEqual(0);
+    expect(result.food).toBeGreaterThanOrEqual(0);
+    expect(result.energy).toBeGreaterThanOrEqual(0);
+  });
+
+  it("includes flight emissions in total", () => {
+    const withoutFlight = calculateFootprint({
+      carKm: 0,
+      publicKm: 0,
+      electricityKwh: 0,
+      meatMeals: 0,
+      vegMeals: 0,
+      shoppingItems: 0,
+      wasteLevel: "low",
+      flightsPerMonth: 0
+    });
+
+    const withFlight = calculateFootprint({
+      carKm: 0,
+      publicKm: 0,
+      electricityKwh: 0,
+      meatMeals: 0,
+      vegMeals: 0,
+      shoppingItems: 0,
+      wasteLevel: "low",
+      flightsPerMonth: 1
+    });
+
+    expect(withFlight.total).toBeGreaterThan(withoutFlight.total);
+    expect(withFlight.flights).toBeGreaterThan(0);
+  });
+
+  it("detects highest category correctly", () => {
+    const result = calculateFootprint({
+      carKm: 50,
+      publicKm: 0,
+      electricityKwh: 1,
+      meatMeals: 0,
+      vegMeals: 0,
+      shoppingItems: 0,
+      wasteLevel: "low",
+      flightsPerMonth: 0
+    });
+
+    expect(result.highestCategory).toBe("transport");
   });
 
   it("classifies footprint levels", () => {

@@ -27,3 +27,14 @@ function saveFootprintEntry(entry) {
 function resetFootprintData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleFootprintData));
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    STORAGE_KEY,
+    initializeSampleData,
+    getFootprintData,
+    saveFootprintEntry,
+    resetFootprintData
+  };
+}

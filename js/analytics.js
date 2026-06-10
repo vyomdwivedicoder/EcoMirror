@@ -124,3 +124,14 @@ function renderLeaderboard() {
     )
     .join("");
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    getLatestEntries,
+    getCategoryTotals,
+    getBiggestCategory,
+    updateStats,
+    renderLeaderboard
+  };
+}

@@ -15,3 +15,11 @@ const communityLeaderboard = [
   { team: "Team Vyom", saved: 24 },
   { team: "Carbon Cutters", saved: 18 }
 ];
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    sampleFootprintData,
+    communityLeaderboard
+  };
+}
