@@ -1,57 +1,168 @@
-# EcoMirror
+# EcoMirror 🌱
 
-EcoMirror is a Carbon Footprint Awareness Platform built for PromptWars Virtual Challenge 3.
+EcoMirror is a Carbon Footprint Awareness Platform built for **PromptWars Virtual Challenge 3**.
 
-The project does not stop at showing carbon numbers. It turns user choices into a visual carbon world, personalized nudges, analytics, and weekly actions so users can understand, track, and reduce their carbon footprint.
+The project helps individuals understand, track, and reduce their carbon footprint through simple inputs, visual awareness, personalized insights, and weekly action plans.
+
+Unlike a basic carbon calculator, EcoMirror focuses on making carbon data more visible and emotionally understandable. The app turns user choices into a changing “EcoMirror world” so users can see how their daily habits affect the environment.
+
+## Live Demo
+
+🌐 Deployed App: https://ecomirror-app.vercel.app/
+
+## GitHub Repository
+
+🔗 Repository: https://github.com/vyomdwivedicoder/EcoMirror
+
+---
 
 ## Problem Statement
 
+**Carbon Footprint Awareness Platform**
+
 Design a solution that helps individuals understand, track, and reduce their carbon footprint through simple actions and personalized insights.
+
+---
 
 ## Solution Overview
 
-Most carbon calculators show numbers, but numbers alone often fail to create awareness. EcoMirror focuses on making carbon impact visible and behavior-driven.
+EcoMirror allows users to enter daily lifestyle details such as travel, electricity use, food habits, shopping, waste, and flights. Based on these inputs, the app calculates an estimated carbon footprint and translates it into:
 
-The app follows this flow:
+* Category-wise emission breakdown
+* Real-world impact messages
+* Personalized nudges
+* A dynamic EcoMirror visual world
+* Weekly action plans
+* Progress analytics
+* Community challenge preview
 
-```txt
-User Input → Carbon Calculator → Awareness Engine → EcoMirror Visual World → Analytics → Nudges → Action Plan
-```
+The main goal is to make users more aware of how everyday decisions contribute to carbon emissions and encourage small, practical behavior changes.
 
-## Features
+---
 
-- Carbon footprint calculator across transport, food, energy, shopping, waste, and flights
-- EcoMirror visual world that changes based on the user's footprint level
-- Real-world impact equivalents to make CO₂ data easier to understand
-- Weekly analytics dashboard with preloaded demo data
-- Category-wise emissions breakdown
-- Personalized nudge based on the largest emission category
-- Weekly action plan with difficulty and estimated CO₂ savings
-- Community challenge leaderboard prototype
-- AI usage and methodology section inside the app
-- LocalStorage support for saving user entries
-- Mobile-responsive design
+## Key Features
+
+### 1. Carbon Footprint Calculator
+
+Users can calculate estimated emissions from:
+
+* Transport
+* Food
+* Electricity
+* Shopping
+* Waste
+* Flights
+
+The calculator gives a total estimated footprint along with a category-wise breakdown.
+
+### 2. EcoMirror Visual World
+
+EcoMirror changes the visual environment based on the user’s footprint level.
+
+* Low footprint: cleaner, greener environment
+* Moderate footprint: balanced warning state
+* High footprint: polluted and stressed environment
+
+This makes the carbon impact easier to understand than just showing numbers.
+
+### 3. Awareness Engine
+
+The app converts raw CO₂ values into simpler real-world impact messages so users can better understand what their footprint means.
+
+### 4. Analytics Dashboard
+
+The dashboard shows:
+
+* Weekly CO₂ trend
+* Category-wise breakdown
+* Average footprint
+* Highest emission category
+* Progress indicators
+
+Demo data is included so the dashboard is meaningful immediately when the app opens.
+
+### 5. Personalized Nudges
+
+EcoMirror identifies the user’s biggest emission source and gives targeted suggestions.
+
+Example:
+
+If transport is the highest category, the app suggests reducing short vehicle trips, using public transport, or combining errands.
+
+### 6. Weekly Action Plan
+
+The app generates simple weekly actions based on the user’s highest footprint category. Each action includes:
+
+* Action title
+* Difficulty level
+* Estimated CO₂ saving
+* Completion checkbox
+
+### 7. Community Challenge Preview
+
+EcoMirror includes a demo leaderboard to show how social accountability can encourage sustainable behavior among groups such as students, hostel floors, teams, or communities.
+
+### 8. AI Usage and Methodology Section
+
+The app includes a dedicated section explaining:
+
+* AI tools used
+* Why they were used
+* Prompt flow
+* Architecture
+* Human contribution
+
+---
 
 ## Tech Stack
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Chart.js CDN
-- LocalStorage
-- Vercel / Netlify / GitHub Pages for deployment
+* HTML5
+* CSS3
+* JavaScript
+* Chart.js
+* LocalStorage
+* Vercel
+* GitHub
+
+---
+
+## Project Architecture
+
+```txt
+User Input
+   ↓
+Carbon Calculator
+   ↓
+Awareness Engine
+   ↓
+EcoMirror Visual World
+   ↓
+Analytics Dashboard
+   ↓
+Personalized Nudges
+   ↓
+Weekly Action Plan
+   ↓
+LocalStorage
+```
+
+---
 
 ## Folder Structure
 
 ```txt
-ecomirror/
+EcoMirror/
 ├── index.html
 ├── README.md
 ├── .gitignore
+│
 ├── assets/
-│   └── logo.svg
+│   ├── logo.svg
+│   └── preview.png
+│
 ├── css/
 │   └── style.css
+│
 └── js/
     ├── app.js
     ├── carbonCalculator.js
@@ -63,99 +174,231 @@ ecomirror/
     └── storage.js
 ```
 
+---
+
 ## Carbon Calculation Methodology
 
-EcoMirror uses estimated emission factors to calculate daily CO₂ emissions. These are simplified educational estimates and not official audit-grade carbon accounting values.
+EcoMirror uses estimated emission factors for different lifestyle activities.
 
-Example factors used:
+Example categories:
 
-```js
-carKm: 0.192 kg CO₂ / km
-publicKm: 0.065 kg CO₂ / km
-electricityKwh: 0.82 kg CO₂ / kWh
-meatMeal: 2.5 kg CO₂ / meal
-vegMeal: 0.7 kg CO₂ / meal
-shoppingItem: 1.8 kg CO₂ / item
-flight: 90 kg CO₂ / flight estimate
-```
+* Car travel
+* Public transport
+* Electricity usage
+* Meat-based meals
+* Vegetarian meals
+* Shopping frequency
+* Waste and recycling habits
+* Flights
 
-The app calculates category emissions, total emissions, and the highest contributing category. The highest category is then used to generate personalized nudges and weekly actions.
+The calculations are simplified for awareness purposes and are not intended to replace scientific carbon audits.
+
+The goal is to give users a clear and understandable estimate that helps them identify their highest-impact areas.
+
+---
 
 ## Demo Data
 
-The dashboard includes preloaded demo data so evaluators can instantly see analytics without needing to enter multiple days of data. When the user submits new calculator entries, those entries are saved in LocalStorage and included in dashboard charts.
+EcoMirror includes pre-stored demo data to make analytics visible immediately.
+
+This helps users and evaluators see:
+
+* Weekly trends
+* Category comparisons
+* Progress charts
+* Leaderboard preview
+* Action recommendations
+
+User-submitted data can be saved locally using LocalStorage.
+
+---
 
 ## AI Tool Usage
 
-AI Tool Used: ChatGPT
+This project was built with assistance from **ChatGPT** and **GitHub Copilot**.
 
-ChatGPT was used as an AI development assistant for:
+### Tools Used
 
-- Understanding the challenge requirements
-- Ideating beyond a basic carbon calculator
-- Planning the project architecture
-- Designing the EcoMirror visual-awareness concept
-- Structuring the calculator and insight logic
-- Drafting documentation and LinkedIn explanation
-- Improving prompt flow and feature prioritization
+#### ChatGPT
+
+ChatGPT was used for:
+
+* Understanding the challenge requirements
+* Refining the idea beyond a basic calculator
+* Planning the product architecture
+* Designing the EcoMirror awareness concept
+* Structuring the folder system
+* Creating carbon calculation logic
+* Designing personalized nudges
+* Planning the weekly action system
+* Improving README documentation
+* Drafting LinkedIn post content
+* Explaining AI usage and prompt flow
+
+#### GitHub Copilot
+
+GitHub Copilot was used for:
+
+* Faster code completion
+* Repetitive JavaScript patterns
+* UI logic suggestions
+* Improving implementation speed
+* Assisting with function structure
+* Reducing manual typing during development
+
+---
+
+## Why These AI Tools Were Selected
+
+ChatGPT was selected because it is useful for high-level reasoning, idea refinement, architecture planning, and documentation.
+
+GitHub Copilot was selected because it helps speed up implementation inside the code editor through intelligent code suggestions and autocomplete.
+
+Together, these tools helped reduce development time while still allowing the developer to make the final product, design, and implementation decisions.
+
+---
 
 ## Prompt Flow
 
-The prompt flow evolved in stages:
+The project started as a basic carbon footprint calculator idea.
 
-1. Started with the challenge statement: build a carbon footprint awareness platform.
-2. Explored a basic calculator and dashboard approach.
-3. Rejected the generic calculator direction because the explainer session emphasized awareness, emotion, and behavior change.
-4. Shifted the concept to EcoMirror: a visual world that reacts to user choices.
-5. Added analytics, personalized nudges, weekly actions, and a community leaderboard demo.
-6. Documented AI usage, architecture, and human contribution clearly for evaluation.
+After reviewing the Challenge 3 explainer session, the direction was changed because the key insight was that carbon awareness should not be limited to numbers on a dashboard. It should create a more visible and behavior-changing experience.
+
+The prompt flow evolved through these stages:
+
+1. Understanding the challenge problem statement
+2. Exploring possible solution ideas
+3. Rejecting a generic calculator-only approach
+4. Creating the EcoMirror concept
+5. Planning a plain HTML, CSS, and JavaScript implementation
+6. Adding pre-stored demo data for analytics
+7. Adding a visual world that reacts to footprint levels
+8. Adding personalized nudges and weekly action plans
+9. Adding AI usage documentation
+10. Preparing deployment and submission materials
+
+---
 
 ## Human Contribution
 
-The developer handled:
+The final product decisions and implementation were handled by the developer.
 
-- Final feature selection
-- UI customization
-- Code integration
-- Testing
-- Deployment
-- GitHub repository setup
-- Submission decisions
+Human contribution included:
 
-AI assisted the planning and development process, but the final implementation and submission preparation were controlled by the developer.
+* Choosing the final project direction
+* Reviewing the challenge explainer summary
+* Selecting the tech stack
+* Implementing and customizing the UI
+* Reviewing AI-assisted suggestions
+* Editing and organizing code
+* Testing the web application
+* Deploying the app on Vercel
+* Managing the GitHub repository
+* Preparing the final submission links
+* Writing and reviewing the LinkedIn submission post
 
-## Accessibility and Security Notes
+AI tools supported the process, but the final decisions, testing, customization, and submission were handled manually.
 
-- Semantic HTML sections and labels are used.
-- Form fields have labels.
-- Navigation includes accessible labels and aria-expanded state.
-- No user data is sent to a server.
-- LocalStorage is used only for carbon entries on the user's browser.
-- No API keys or secrets are required.
+---
 
-## Testing Checklist
+## Code Quality Considerations
 
-- Calculator submits successfully
-- Dashboard updates after submission
-- EcoMirror changes based on footprint level
-- Action plan changes based on highest category
-- Reset demo data button works
-- Charts render correctly
-- Mobile navigation works
-- App works without login
-- Repository does not include node_modules or build files
+The project uses:
+
+* Separate JavaScript files for better organization
+* Clear function-based logic
+* LocalStorage for lightweight persistence
+* Chart.js for efficient visual analytics
+* No backend dependency
+* No sensitive environment variables
+* Small repository size suitable for submission
+
+---
+
+## Accessibility Considerations
+
+EcoMirror includes:
+
+* Clear section headings
+* Readable text contrast
+* Button labels
+* Simple navigation
+* Responsive layout
+* Visual and text-based feedback
+* Form labels for user inputs
+
+---
+
+## Security Considerations
+
+The app does not collect personal information or require login.
+
+Data is stored locally in the user’s browser using LocalStorage. No private user data is sent to a server.
+
+---
+
+## Deployment
+
+The app is deployed using Vercel.
+
+Deployment link:
+
+https://ecomirror-app.vercel.app/
+
+---
+
+## How to Run Locally
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/vyomdwivedicoder/EcoMirror.git
+```
+
+2. Open the project folder:
+
+```bash
+cd EcoMirror
+```
+
+3. Open `index.html` in a browser.
+
+No backend setup is required.
+
+---
 
 ## Future Scope
 
-- Add user accounts and cloud sync
-- Use real-time regional emission factor APIs
-- Add AI-generated weekly sustainability plans
-- Add college/office team challenges with live leaderboards
-- Add gamification with badges and streaks
-- Add location-based transport and recycling suggestions
-- Generate downloadable weekly progress reports
-- Support regional languages
+* Add user accounts and cloud sync
+* Add regional emission factors for more accurate calculations
+* Integrate real-time transport and electricity APIs
+* Add AI-generated weekly sustainability plans
+* Add team-based sustainability challenges
+* Add badges, streaks, and gamification
+* Add downloadable weekly/monthly footprint reports
+* Add location-based eco recommendations
+* Add multi-language support
+* Add receipt or bill scanning for automated footprint estimation
 
-## License
+---
 
-This project is created for educational and challenge submission purposes.
+## Challenge Alignment
+
+EcoMirror aligns with the Challenge 3 requirement by helping users:
+
+* Understand their carbon footprint
+* Track their emissions over time
+* Receive personalized insights
+* Take simple reduction actions
+* Build awareness through visual and emotional feedback
+
+The project focuses on awareness, behavior change, and practical sustainability rather than only displaying carbon numbers.
+
+---
+
+## Author
+
+**Vyom Dwivedi**
+
+GitHub: https://github.com/vyomdwivedicoder
+Project: EcoMirror
