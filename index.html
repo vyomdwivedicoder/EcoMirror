@@ -2,21 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="EcoMirror is a carbon footprint awareness platform that turns daily choices into visible impact, personalized nudges, and simple action plans."
     />
+
     <title>EcoMirror | Carbon Footprint Awareness Platform</title>
+
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
     <header class="site-header">
       <nav class="navbar" aria-label="Primary navigation">
@@ -24,9 +33,17 @@
           <img src="assets/logo.svg" alt="EcoMirror logo" />
           <span>EcoMirror</span>
         </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          type="button"
+        >
           ☰
         </button>
+
         <div class="nav-links" id="navLinks">
           <a href="#calculator">Calculator</a>
           <a href="#mirror">EcoMirror</a>
@@ -38,50 +55,67 @@
     </header>
 
     <main>
+      <!-- Hero Section -->
       <section class="hero section" id="home">
         <div class="hero-content">
           <p class="eyebrow">Carbon awareness, not just carbon numbers</p>
+
           <h1>See how your daily choices change your carbon world.</h1>
+
           <p class="hero-text">
             EcoMirror converts abstract CO₂ data into a visual world, practical nudges,
             and weekly actions that help individuals understand, track, and reduce their footprint.
           </p>
+
           <div class="hero-actions">
             <a class="btn primary" href="#calculator">Calculate footprint</a>
             <a class="btn secondary" href="#mirror">View EcoMirror</a>
           </div>
         </div>
+
         <div class="hero-card" aria-label="Current awareness snapshot">
           <div class="mini-world clean" id="heroWorld">
-            <span>☀️</span><span>🌳</span><span>🏠</span><span>🚲</span><span>🌿</span>
+            <span>☀️</span>
+            <span>🌳</span>
+            <span>🏠</span>
+            <span>🚲</span>
+            <span>🌿</span>
           </div>
+
           <h2>Awareness Engine</h2>
+
           <p>
             Raw emissions are translated into emotional, real-world impact messages that users can understand.
           </p>
         </div>
       </section>
 
+      <!-- Problem Section -->
       <section class="section problem-section" aria-labelledby="problem-title">
         <div class="section-heading">
           <p class="eyebrow">Problem focus</p>
+
           <h2 id="problem-title">Most people do not feel carbon data.</h2>
+
           <p>
             A number like “18 kg CO₂” is technically useful but emotionally weak. EcoMirror makes impact visible by
             connecting each footprint to a changing world, relatable equivalents, and specific next steps.
           </p>
         </div>
+
         <div class="feature-grid">
           <article class="feature-card">
             <span class="feature-icon">🪞</span>
             <h3>Visual awareness</h3>
             <p>The world becomes cleaner or more stressed based on user choices.</p>
           </article>
+
           <article class="feature-card">
             <span class="feature-icon">📊</span>
             <h3>Trackable analytics</h3>
             <p>Demo and user data power weekly trends and category breakdowns.</p>
           </article>
+
           <article class="feature-card">
             <span class="feature-icon">🎯</span>
             <h3>Personal nudges</h3>
@@ -90,11 +124,16 @@
         </div>
       </section>
 
+      <!-- Calculator Section -->
       <section class="section calculator-section" id="calculator" aria-labelledby="calculator-title">
         <div class="section-heading align-left">
           <p class="eyebrow">Step 1</p>
+
           <h2 id="calculator-title">Carbon Footprint Calculator</h2>
-          <p>Enter simple daily and weekly habits. The calculator estimates emissions across six categories.</p>
+
+          <p>
+            Enter simple daily and weekly habits. The calculator estimates emissions across six categories.
+          </p>
         </div>
 
         <div class="calculator-layout">
@@ -103,26 +142,32 @@
               <label for="carKm">Daily car / bike distance (km)</label>
               <input type="number" id="carKm" min="0" step="0.1" value="10" required />
             </div>
+
             <div class="form-row">
               <label for="publicKm">Daily public transport distance (km)</label>
               <input type="number" id="publicKm" min="0" step="0.1" value="8" required />
             </div>
+
             <div class="form-row">
               <label for="electricityKwh">Daily electricity usage (kWh)</label>
               <input type="number" id="electricityKwh" min="0" step="0.1" value="4" required />
             </div>
+
             <div class="form-row">
               <label for="meatMeals">Meat-heavy meals per week</label>
               <input type="number" id="meatMeals" min="0" step="1" value="3" required />
             </div>
+
             <div class="form-row">
               <label for="vegMeals">Vegetarian meals per week</label>
               <input type="number" id="vegMeals" min="0" step="1" value="10" required />
             </div>
+
             <div class="form-row">
               <label for="shoppingItems">New shopping / online orders per week</label>
               <input type="number" id="shoppingItems" min="0" step="1" value="2" required />
             </div>
+
             <div class="form-row">
               <label for="wasteLevel">Waste and recycling habit</label>
               <select id="wasteLevel" required>
@@ -131,27 +176,37 @@
                 <option value="high">High waste / little recycling</option>
               </select>
             </div>
+
             <div class="form-row">
               <label for="flightsPerMonth">Flights per month</label>
               <input type="number" id="flightsPerMonth" min="0" step="1" value="0" required />
             </div>
+
             <button class="btn primary full-width" type="submit">Update my EcoMirror</button>
           </form>
 
           <aside class="result-panel" aria-live="polite">
             <p class="eyebrow">Your current estimate</p>
+
             <h3><span id="totalFootprint">0.0</span> kg CO₂ / day</h3>
+
             <p id="footprintLevelText">Submit the form to generate your footprint level.</p>
+
             <div class="result-breakdown" id="categoryResults"></div>
           </aside>
         </div>
       </section>
 
+      <!-- EcoMirror Visual World -->
       <section class="section mirror-section" id="mirror" aria-labelledby="mirror-title">
         <div class="section-heading">
           <p class="eyebrow">Step 2</p>
+
           <h2 id="mirror-title">EcoMirror Visual World</h2>
-          <p>Your carbon world responds to your footprint level. This makes awareness visible, not just numerical.</p>
+
+          <p>
+            Your carbon world responds to your footprint level. This makes awareness visible, not just numerical.
+          </p>
         </div>
 
         <div class="mirror-card" id="mirrorCard">
@@ -160,19 +215,27 @@
             <div class="nature-line" id="natureLine">🌳 🌳 🏠 🚲 🌿</div>
             <div class="ground-line" id="groundLine">🌱 🌼 🌱 🌼 🌱</div>
           </div>
+
           <div class="mirror-message">
             <h3 id="mirrorTitle">Balanced World</h3>
+
             <p id="mirrorDescription">Your EcoMirror will update after calculation.</p>
+
             <p class="impact-equivalent" id="impactEquivalent">Real-world equivalent will appear here.</p>
           </div>
         </div>
       </section>
 
+      <!-- Dashboard Section -->
       <section class="section dashboard-section" id="dashboard" aria-labelledby="dashboard-title">
         <div class="section-heading align-left">
           <p class="eyebrow">Step 3</p>
+
           <h2 id="dashboard-title">Analytics Dashboard</h2>
-          <p>Preloaded demo data appears by default, so evaluators can instantly verify analytics.</p>
+
+          <p>
+            Preloaded demo data appears by default, so evaluators can instantly verify analytics.
+          </p>
         </div>
 
         <div class="stats-grid">
@@ -180,14 +243,17 @@
             <span>Weekly total</span>
             <strong id="weeklyTotal">0 kg</strong>
           </article>
+
           <article class="stat-card">
             <span>Daily average</span>
             <strong id="dailyAverage">0 kg</strong>
           </article>
+
           <article class="stat-card">
             <span>Biggest source</span>
             <strong id="biggestSource">-</strong>
           </article>
+
           <article class="stat-card">
             <span>Monthly estimate</span>
             <strong id="monthlyEstimate">0 kg</strong>
@@ -199,19 +265,26 @@
             <h3>Weekly CO₂ Trend</h3>
             <canvas id="trendChart" aria-label="Weekly carbon footprint trend chart"></canvas>
           </article>
+
           <article class="chart-card">
             <h3>Category Breakdown</h3>
             <canvas id="categoryChart" aria-label="Carbon footprint category breakdown chart"></canvas>
           </article>
         </div>
+
         <button class="btn secondary" id="resetDemoBtn" type="button">Reset demo data</button>
       </section>
 
+      <!-- Actions Section -->
       <section class="section actions-section" id="actions" aria-labelledby="actions-title">
         <div class="section-heading align-left">
           <p class="eyebrow">Step 4</p>
+
           <h2 id="actions-title">Personalized Nudges & Weekly Action Plan</h2>
-          <p>The largest emission category controls the insight and recommended actions.</p>
+
+          <p>
+            The largest emission category controls the insight and recommended actions.
+          </p>
         </div>
 
         <div class="insight-card">
@@ -222,37 +295,98 @@
         <div class="action-grid" id="actionGrid"></div>
       </section>
 
+      <!-- Community Challenge Preview -->
       <section class="section community-section" aria-labelledby="community-title">
         <div class="section-heading">
           <p class="eyebrow">Social accountability demo</p>
+
           <h2 id="community-title">Community Challenge Preview</h2>
-          <p>Teams can compete to reduce emissions together. This is a prototype preview using demo data.</p>
+
+          <p>
+            Teams can compete to reduce emissions together. This is a prototype preview using demo data.
+          </p>
         </div>
+
         <div class="leaderboard" id="leaderboard"></div>
       </section>
 
+      <!-- AI Usage / Methodology Section -->
       <section class="section methodology-section" id="methodology" aria-labelledby="methodology-title">
         <div class="section-heading align-left">
           <p class="eyebrow">Transparency</p>
+
           <h2 id="methodology-title">AI Usage, Architecture & Methodology</h2>
+
+          <p>
+            This section documents the AI-assisted development workflow, tool usage,
+            prompt flow, architecture, and human contribution.
+          </p>
         </div>
 
         <div class="method-grid">
           <article class="method-card">
-            <h3>AI Tool Used</h3>
-            <p>ChatGPT was used as an AI development assistant for ideation, architecture planning, logic refinement, documentation, and prompt-flow improvement.</p>
+            <h3>AI Tools Used</h3>
+
+            <p>
+              <strong>ChatGPT</strong> was used for challenge interpretation, ideation,
+              architecture planning, feature refinement, documentation, README structure,
+              and LinkedIn post drafting.
+            </p>
+
+            <p>
+              <strong>GitHub Copilot</strong> was used for code completion, repetitive
+              JavaScript patterns, UI logic suggestions, function structure, and faster
+              implementation inside the editor.
+            </p>
           </article>
+
+          <article class="method-card">
+            <h3>Why These Tools Were Selected</h3>
+
+            <p>
+              ChatGPT was selected for reasoning, planning, and documentation. GitHub Copilot
+              was selected to speed up implementation and reduce repetitive coding work.
+            </p>
+          </article>
+
           <article class="method-card">
             <h3>Prompt Flow</h3>
-            <p>The idea evolved from a basic calculator into EcoMirror after focusing on awareness as a visual and behavioral experience, not just a dashboard.</p>
+
+            <p>
+              The project started as a basic carbon footprint calculator idea. After reviewing
+              the Challenge 3 explainer session, the direction changed into EcoMirror: an
+              awareness-first platform with a visual carbon world, personalized nudges,
+              analytics, action planning, and social accountability elements.
+            </p>
           </article>
+
           <article class="method-card">
             <h3>Human Contribution</h3>
-            <p>The developer handled final implementation, UI decisions, testing, deployment, GitHub setup, and submission choices.</p>
+
+            <p>
+              The developer handled the final product direction, UI customization, code review,
+              testing, deployment on Vercel, GitHub repository management, and final submission
+              decisions.
+            </p>
           </article>
+
           <article class="method-card">
             <h3>Architecture</h3>
-            <p>User Input → Carbon Calculator → Awareness Engine → EcoMirror Visual World → Analytics → Nudges → Action Plan.</p>
+
+            <p>
+              User Input → Carbon Calculator → Awareness Engine → EcoMirror Visual World →
+              Analytics Dashboard → Personalized Nudges → Weekly Action Plan → LocalStorage.
+            </p>
+          </article>
+
+          <article class="method-card">
+            <h3>Challenge Alignment</h3>
+
+            <p>
+              EcoMirror focuses on awareness instead of only calculation. It translates carbon
+              numbers into visual feedback, real-world meaning, and simple behavior-changing
+              actions.
+            </p>
           </article>
         </div>
       </section>
@@ -263,7 +397,10 @@
       <p>Built for PromptWars Virtual Challenge 3</p>
     </footer>
 
+    <!-- External Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Project Scripts -->
     <script src="js/carbonCalculator.js"></script>
     <script src="js/awarenessEngine.js"></script>
     <script src="js/ecoMirror.js"></script>
