@@ -63,3 +63,13 @@ function getFootprintLevel(total) {
   }
   return "high";
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    EMISSION_FACTORS,
+    roundToOne,
+    calculateFootprint,
+    getFootprintLevel
+  };
+}

@@ -64,3 +64,12 @@ function renderActionPlan(category) {
     });
   });
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    ACTION_LIBRARY,
+    getActionsForCategory,
+    renderActionPlan
+  };
+}

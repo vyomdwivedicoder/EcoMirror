@@ -55,3 +55,13 @@ function generateMirrorCopy(total) {
     description: "Your carbon world is heating up. Focus on your largest source first instead of trying to fix everything at once.",
   };
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    titleCase,
+    generateImpactEquivalent,
+    generateNudge,
+    generateMirrorCopy
+  };
+}
