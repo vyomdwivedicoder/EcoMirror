@@ -2,9 +2,9 @@
 
 EcoMirror is a **Carbon Footprint Awareness Platform** built for **PromptWars Virtual Challenge 3**.
 
-The project helps individuals understand, track, and reduce their carbon footprint through simple inputs, visual awareness, personalized insights, analytics, and weekly action plans.
+The platform helps individuals understand, track, and reduce their estimated carbon footprint through simple inputs, visual awareness, personalized insights, analytics, and practical weekly action plans.
 
-Unlike a basic carbon calculator, EcoMirror focuses on making carbon data more visible and emotionally understandable. It turns daily lifestyle choices into a changing “EcoMirror world” so users can see how their habits affect the environment.
+Unlike a basic carbon calculator, EcoMirror focuses on **awareness and behavior change**. It turns daily lifestyle choices into a changing visual “EcoMirror world,” helping users emotionally understand how their habits affect the environment.
 
 ---
 
@@ -30,9 +30,9 @@ Design a solution that helps individuals understand, track, and reduce their car
 
 ## Solution Overview
 
-EcoMirror allows users to enter daily lifestyle details such as travel, electricity use, food habits, shopping, waste, and flights.
+EcoMirror allows users to enter daily lifestyle details such as travel, electricity usage, food habits, shopping, waste, and flights.
 
-Based on these inputs, the app calculates an estimated carbon footprint and translates it into:
+Based on these inputs, the app calculates an estimated daily carbon footprint and translates it into:
 
 * Category-wise emission breakdown
 * Real-world impact messages
@@ -42,7 +42,7 @@ Based on these inputs, the app calculates an estimated carbon footprint and tran
 * Progress analytics
 * Community challenge preview
 
-The main goal is to make users more aware of how everyday decisions contribute to carbon emissions and encourage small, practical behavior changes.
+The main goal is to make carbon impact easier to understand and encourage users to take small, practical steps toward sustainable habits.
 
 ---
 
@@ -65,15 +65,15 @@ The calculator gives a total estimated footprint along with a category-wise brea
 
 EcoMirror changes the visual environment based on the user’s footprint level.
 
-* Low footprint: cleaner, greener environment
+* Low footprint: cleaner, greener world
 * Moderate footprint: warning state
-* High footprint: polluted and stressed environment
+* High footprint: polluted and stressed world
 
-This makes the carbon impact easier to understand than only showing numbers.
+This makes carbon impact easier to understand than only showing numbers.
 
 ### 3. Awareness Engine
 
-The app converts raw CO₂ values into simpler real-world impact messages so users can better understand what their footprint means.
+The app converts raw CO₂ values into real-world comparison messages so users can better understand what their footprint means.
 
 ### 4. Analytics Dashboard
 
@@ -90,15 +90,17 @@ Demo data is included so the dashboard is meaningful immediately when the app op
 
 ### 5. Personalized Nudges
 
-EcoMirror identifies the user’s biggest emission source and gives targeted suggestions.
+EcoMirror identifies the user’s highest emission category and gives targeted suggestions.
 
 Example:
 
-If transport is the highest category, the app suggests reducing short vehicle trips, using public transport, or combining errands.
+If transport is the highest category, the app suggests reducing short vehicle trips, using public transport, walking, cycling, or combining errands.
 
 ### 6. Weekly Action Plan
 
-The app generates simple weekly actions based on the user’s highest footprint category. Each action includes:
+The app generates simple weekly actions based on the user’s highest footprint category.
+
+Each action includes:
 
 * Action title
 * Difficulty level
@@ -188,6 +190,7 @@ EcoMirror/
 │
 ├── index.html
 ├── README.md
+├── QUALITY.md
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
@@ -217,6 +220,37 @@ The goal is to give users a clear and understandable estimate that helps them id
 
 ---
 
+## Code Quality
+
+EcoMirror is organized into small JavaScript files by responsibility.
+
+Main modules:
+
+* `carbonCalculator.js` handles footprint estimation.
+* `awarenessEngine.js` handles user-facing insight messages.
+* `ecoMirror.js` handles visual world updates.
+* `analytics.js` handles dashboard calculations.
+* `actionPlanner.js` handles weekly recommendations.
+* `storage.js` handles LocalStorage persistence.
+* `app.js` connects UI events to app logic.
+
+Code quality improvements include:
+
+* Input sanitization for calculator values
+* Safe fallback handling for invalid waste levels
+* Reusable constants for calculation periods and limits
+* DOM guard clauses to avoid crashes when elements are missing
+* LocalStorage availability checks
+* Defensive fallbacks for analytics and nudges
+* JSDoc comments for important functions
+* Modular file organization
+* Automated unit tests for core logic
+* jsdom tests for browser-like behavior
+
+Additional code quality notes are available in [QUALITY.md](QUALITY.md).
+
+---
+
 ## Demo Data
 
 EcoMirror includes pre-stored demo data to make analytics visible immediately.
@@ -240,7 +274,9 @@ EcoMirror includes automated unit tests using **Vitest** and **jsdom**.
 Tested modules:
 
 * Carbon footprint calculation
+* Input validation
 * Emission factor validation
+* Waste level fallback handling
 * Footprint level classification
 * Real-world impact message generation
 * Personalized nudge generation
@@ -255,7 +291,7 @@ Current test results:
 
 ```txt
 Test Files  7 passed (7)
-Tests       40 passed (40)
+Tests       50 passed (50)
 ```
 
 To run tests locally:
@@ -277,7 +313,7 @@ To run coverage:
 npm run coverage
 ```
 
-Testing was added to verify the reliability of the core calculation, awareness, storage, dashboard, and recommendation logic.
+Testing was added to verify the reliability of the core calculation, awareness, storage, dashboard, recommendation, and browser DOM logic.
 
 ---
 
@@ -301,6 +337,7 @@ ChatGPT was used for:
 * Drafting LinkedIn post content
 * Explaining AI usage and prompt flow
 * Improving testing strategy
+* Improving code quality through input validation, guard clauses, and documentation
 
 ### GitHub Copilot
 
@@ -316,7 +353,7 @@ GitHub Copilot was used for:
 
 ## Why These AI Tools Were Selected
 
-ChatGPT was selected because it is useful for high-level reasoning, idea refinement, architecture planning, testing strategy, and documentation.
+ChatGPT was selected because it is useful for high-level reasoning, idea refinement, architecture planning, testing strategy, code review, and documentation.
 
 GitHub Copilot was selected because it helps speed up implementation inside the code editor through intelligent code suggestions and autocomplete.
 
@@ -343,7 +380,8 @@ The prompt flow evolved through these stages:
 9. Adding AI usage documentation
 10. Adding unit tests for core JavaScript logic
 11. Expanding tests for storage, analytics, sample data, action planning, and EcoMirror UI behavior
-12. Preparing deployment and submission materials
+12. Improving input validation and defensive code quality
+13. Preparing deployment and submission materials
 
 ---
 
@@ -361,27 +399,13 @@ Human contribution included:
 * Editing and organizing code
 * Testing the web application manually
 * Adding and running automated tests
+* Improving code quality and documentation
 * Deploying the app on Vercel
 * Managing the GitHub repository
 * Preparing the final submission links
 * Writing and reviewing the LinkedIn submission post
 
 AI tools supported the process, but the final decisions, testing, customization, deployment, and submission were handled manually.
-
----
-
-## Code Quality Considerations
-
-The project uses:
-
-* Separate JavaScript files for better organization
-* Clear function-based logic
-* LocalStorage for lightweight persistence
-* Chart.js for visual analytics
-* No backend dependency
-* No sensitive environment variables
-* Small repository size suitable for submission
-* Automated tests for core logic and browser behavior
 
 ---
 
