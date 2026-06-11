@@ -5,25 +5,44 @@ global.titleCase = require("../js/awarenessEngine.js").titleCase;
 
 const {
   sampleFootprintData,
-  communityLeaderboard
+  communityLeaderboard,
 } = require("../js/sampleData.js");
 
 global.communityLeaderboard = communityLeaderboard;
 
 const {
+  DEFAULT_DASHBOARD_ENTRY_COUNT,
+  DAYS_PER_MONTH_ESTIMATE,
   getLatestEntries,
   getCategoryTotals,
   getBiggestCategory,
   updateStats,
-  renderLeaderboard
+  renderLeaderboard,
 } = require("../js/analytics.js");
 
 describe("analytics", () => {
+  it("defines reusable dashboard constants", () => {
+    expect(DEFAULT_DASHBOARD_ENTRY_COUNT).toBe(7);
+    expect(DAYS_PER_MONTH_ESTIMATE).toBe(30);
+  });
+
   it("gets the latest entries", () => {
     const latest = getLatestEntries(sampleFootprintData, 3);
 
     expect(latest.length).toBe(3);
     expect(latest[0].date).toBe(sampleFootprintData[sampleFootprintData.length - 3].date);
+  });
+
+  it("handles missing analytics data safely", () => {
+    expect(getLatestEntries()).toEqual([]);
+    expect(getCategoryTotals()).toEqual({
+      transport: 0,
+      food: 0,
+      energy: 0,
+      shopping: 0,
+      waste: 0,
+      flights: 0,
+    });
   });
 
   it("calculates category totals", () => {
@@ -42,10 +61,14 @@ describe("analytics", () => {
       energy: 2,
       shopping: 1,
       waste: 1,
-      flights: 0
+      flights: 0,
     });
 
     expect(biggest).toBe("transport");
+  });
+
+  it("falls back to transport for empty category totals", () => {
+    expect(getBiggestCategory({})).toBe("transport");
   });
 
   describe("DOM analytics", () => {

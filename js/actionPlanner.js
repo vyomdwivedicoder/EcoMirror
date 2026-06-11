@@ -31,12 +31,28 @@ const ACTION_LIBRARY = {
   ],
 };
 
+/**
+ * Returns recommended actions for a category.
+ * Unknown categories fall back to transport actions.
+ * @param {string} category
+ * @returns {Array<Object>}
+ */
 function getActionsForCategory(category) {
   return ACTION_LIBRARY[category] || ACTION_LIBRARY.transport;
 }
 
+/**
+ * Renders a weekly action plan for the selected highest-impact category.
+ * @param {string} category
+ * @returns {void}
+ */
 function renderActionPlan(category) {
   const actionGrid = document.getElementById("actionGrid");
+
+  if (!actionGrid) {
+    return;
+  }
+
   const actions = getActionsForCategory(category);
 
   actionGrid.innerHTML = actions
@@ -65,11 +81,10 @@ function renderActionPlan(category) {
   });
 }
 
-
 if (typeof module !== "undefined") {
   module.exports = {
     ACTION_LIBRARY,
     getActionsForCategory,
-    renderActionPlan
+    renderActionPlan,
   };
 }

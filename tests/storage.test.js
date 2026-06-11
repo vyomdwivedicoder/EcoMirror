@@ -6,15 +6,20 @@ global.sampleFootprintData = sampleFootprintData;
 
 const {
   STORAGE_KEY,
+  isStorageAvailable,
   initializeSampleData,
   getFootprintData,
   saveFootprintEntry,
-  resetFootprintData
+  resetFootprintData,
 } = require("../js/storage.js");
 
 describe("storage", () => {
   beforeEach(() => {
     localStorage.clear();
+  });
+
+  it("detects localStorage availability", () => {
+    expect(isStorageAvailable()).toBe(true);
   });
 
   it("initializes sample data when storage is empty", () => {
@@ -44,7 +49,7 @@ describe("storage", () => {
       waste: 1,
       flights: 0,
       total: 5,
-      highestCategory: "transport"
+      highestCategory: "transport",
     });
 
     const data = getFootprintData();
@@ -64,7 +69,7 @@ describe("storage", () => {
         waste: 1,
         flights: 0,
         total: i,
-        highestCategory: "transport"
+        highestCategory: "transport",
       });
     }
 
@@ -82,7 +87,7 @@ describe("storage", () => {
       waste: 1,
       flights: 0,
       total: 5,
-      highestCategory: "transport"
+      highestCategory: "transport",
     });
 
     resetFootprintData();

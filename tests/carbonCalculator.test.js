@@ -1,13 +1,25 @@
 import { describe, it, expect, beforeEach } from "vitest";
 
 const {
+  DAYS_PER_WEEK,
+  DAYS_PER_MONTH,
+  FOOTPRINT_LEVEL_LIMITS,
   EMISSION_FACTORS,
   roundToOne,
+  toSafeNumber,
+  getSafeWasteLevel,
   calculateFootprint,
-  getFootprintLevel
+  getFootprintLevel,
 } = require("../js/carbonCalculator.js");
 
 describe("carbonCalculator", () => {
+  it("defines reusable constants for calculation periods and footprint limits", () => {
+    expect(DAYS_PER_WEEK).toBe(7);
+    expect(DAYS_PER_MONTH).toBe(30);
+    expect(FOOTPRINT_LEVEL_LIMITS.low).toBe(8);
+    expect(FOOTPRINT_LEVEL_LIMITS.moderate).toBe(16);
+  });
+
   it("contains required emission factors", () => {
     expect(EMISSION_FACTORS).toHaveProperty("carKm");
     expect(EMISSION_FACTORS).toHaveProperty("publicKm");
@@ -24,6 +36,22 @@ describe("carbonCalculator", () => {
     expect(roundToOne(12.36)).toBe(12.4);
   });
 
+  it("sanitizes invalid numbers", () => {
+    expect(toSafeNumber("")).toBe(0);
+    expect(toSafeNumber("abc")).toBe(0);
+    expect(toSafeNumber(-10)).toBe(0);
+    expect(toSafeNumber(Infinity)).toBe(0);
+    expect(toSafeNumber(12)).toBe(12);
+  });
+
+  it("falls back to medium waste level for invalid values", () => {
+    expect(getSafeWasteLevel("low")).toBe("low");
+    expect(getSafeWasteLevel("medium")).toBe("medium");
+    expect(getSafeWasteLevel("high")).toBe("high");
+    expect(getSafeWasteLevel("invalid")).toBe("medium");
+    expect(getSafeWasteLevel(undefined)).toBe("medium");
+  });
+
   it("calculates total footprint from valid inputs", () => {
     const result = calculateFootprint({
       carKm: 10,
@@ -33,7 +61,7 @@ describe("carbonCalculator", () => {
       vegMeals: 10,
       shoppingItems: 2,
       wasteLevel: "medium",
-      flightsPerMonth: 0
+      flightsPerMonth: 0,
     });
 
     expect(result.total).toBeGreaterThan(0);
@@ -52,13 +80,33 @@ describe("carbonCalculator", () => {
       vegMeals: 0,
       shoppingItems: 0,
       wasteLevel: "low",
-      flightsPerMonth: 0
+      flightsPerMonth: 0,
     });
 
     expect(result.total).toBeGreaterThanOrEqual(0);
     expect(result.transport).toBeGreaterThanOrEqual(0);
     expect(result.food).toBeGreaterThanOrEqual(0);
     expect(result.energy).toBeGreaterThanOrEqual(0);
+  });
+
+  it("prevents negative inputs from reducing footprint", () => {
+    const result = calculateFootprint({
+      carKm: -100,
+      publicKm: -20,
+      electricityKwh: -5,
+      meatMeals: -3,
+      vegMeals: -2,
+      shoppingItems: -1,
+      wasteLevel: "low",
+      flightsPerMonth: -1,
+    });
+
+    expect(result.transport).toBe(0);
+    expect(result.food).toBe(0);
+    expect(result.energy).toBe(0);
+    expect(result.shopping).toBe(0);
+    expect(result.flights).toBe(0);
+    expect(result.total).toBeGreaterThanOrEqual(0);
   });
 
   it("includes flight emissions in total", () => {
@@ -70,7 +118,7 @@ describe("carbonCalculator", () => {
       vegMeals: 0,
       shoppingItems: 0,
       wasteLevel: "low",
-      flightsPerMonth: 0
+      flightsPerMonth: 0,
     });
 
     const withFlight = calculateFootprint({
@@ -81,7 +129,7 @@ describe("carbonCalculator", () => {
       vegMeals: 0,
       shoppingItems: 0,
       wasteLevel: "low",
-      flightsPerMonth: 1
+      flightsPerMonth: 1,
     });
 
     expect(withFlight.total).toBeGreaterThan(withoutFlight.total);
@@ -97,7 +145,7 @@ describe("carbonCalculator", () => {
       vegMeals: 0,
       shoppingItems: 0,
       wasteLevel: "low",
-      flightsPerMonth: 0
+      flightsPerMonth: 0,
     });
 
     expect(result.highestCategory).toBe("transport");

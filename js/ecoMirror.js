@@ -1,4 +1,13 @@
+/**
+ * Updates the EcoMirror visual world based on the user's footprint result.
+ * @param {Object} result - Footprint result containing a total value.
+ * @returns {void}
+ */
 function updateEcoMirror(result) {
+  if (!result || typeof result.total !== "number") {
+    return;
+  }
+
   const level = getFootprintLevel(result.total);
   const copy = generateMirrorCopy(result.total);
 
@@ -9,6 +18,18 @@ function updateEcoMirror(result) {
   const mirrorTitle = document.getElementById("mirrorTitle");
   const mirrorDescription = document.getElementById("mirrorDescription");
   const impactEquivalent = document.getElementById("impactEquivalent");
+
+  if (
+    !worldScene ||
+    !skyLine ||
+    !natureLine ||
+    !groundLine ||
+    !mirrorTitle ||
+    !mirrorDescription ||
+    !impactEquivalent
+  ) {
+    return;
+  }
 
   worldScene.className = `world-scene ${level === "high" ? "stressed" : level}`;
 
@@ -38,9 +59,8 @@ function updateEcoMirror(result) {
   impactEquivalent.textContent = generateImpactEquivalent(result.total);
 }
 
-
 if (typeof module !== "undefined") {
   module.exports = {
-    updateEcoMirror
+    updateEcoMirror,
   };
 }

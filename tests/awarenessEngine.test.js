@@ -6,13 +6,17 @@ const {
   titleCase,
   generateImpactEquivalent,
   generateNudge,
-  generateMirrorCopy
+  generateMirrorCopy,
 } = require("../js/awarenessEngine.js");
 
 describe("awarenessEngine", () => {
   it("converts category names to title case", () => {
     expect(titleCase("transport")).toBe("Transport");
     expect(titleCase("energy")).toBe("Energy");
+  });
+
+  it("handles empty titleCase input safely", () => {
+    expect(titleCase()).toBe("");
   });
 
   it("generates readable impact equivalents for low footprint", () => {
@@ -54,6 +58,13 @@ describe("awarenessEngine", () => {
 
     expect(nudge).toMatch(/Energy/i);
     expect(nudge).toMatch(/appliances|cooling|heating/i);
+  });
+
+  it("falls back to transport nudge for invalid category", () => {
+    const nudge = generateNudge({ highestCategory: "invalid" });
+
+    expect(nudge).toMatch(/Transport/i);
+    expect(nudge).toMatch(/walking|cycling|public transport/i);
   });
 
   it("generates mirror copy for all levels", () => {

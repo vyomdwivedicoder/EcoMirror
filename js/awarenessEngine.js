@@ -1,8 +1,18 @@
-function titleCase(value) {
+/**
+ * Converts a category key into a readable label.
+ * @param {string} value
+ * @returns {string}
+ */
+function titleCase(value = "") {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-function generateImpactEquivalent(total) {
+/**
+ * Converts a carbon footprint total into a real-world comparison message.
+ * @param {number} total
+ * @returns {string}
+ */
+function generateImpactEquivalent(total = 0) {
   const carKmEquivalent = Math.round(total / 0.192);
   const electricityDays = Math.max(1, Math.round(total / (4 * 0.82)));
 
@@ -17,10 +27,13 @@ function generateImpactEquivalent(total) {
   return `Estimated impact: roughly equal to driving ${carKmEquivalent} km in a petrol car. This is high enough to deserve immediate habit changes.`;
 }
 
-function generateNudge(result) {
-  const category = result.highestCategory;
-  const categoryLabel = titleCase(category);
-
+/**
+ * Generates a personalized reduction nudge based on the highest footprint category.
+ * Invalid categories fall back to transport.
+ * @param {Object} result
+ * @returns {string}
+ */
+function generateNudge(result = {}) {
   const nudges = {
     transport: "Your biggest source is transport. Replace one short vehicle trip with walking, cycling, or public transport this week.",
     food: "Your biggest source is food. Try one meat-light day this week and shift a few meals toward plant-based options.",
@@ -30,10 +43,20 @@ function generateNudge(result) {
     flights: "Your biggest source is flights. Avoid short flights where train or bus travel is practical, and combine trips when possible.",
   };
 
-  return `${categoryLabel} is currently your highest category. ${nudges[category]}`;
+  const requestedCategory = result.highestCategory || "transport";
+  const safeCategory = Object.prototype.hasOwnProperty.call(nudges, requestedCategory)
+    ? requestedCategory
+    : "transport";
+
+  return `${titleCase(safeCategory)} is currently your highest category. ${nudges[safeCategory]}`;
 }
 
-function generateMirrorCopy(total) {
+/**
+ * Returns EcoMirror title and description copy for the current footprint level.
+ * @param {number} total
+ * @returns {{title: string, description: string}}
+ */
+function generateMirrorCopy(total = 0) {
   const level = getFootprintLevel(total);
 
   if (level === "low") {
@@ -56,12 +79,11 @@ function generateMirrorCopy(total) {
   };
 }
 
-
 if (typeof module !== "undefined") {
   module.exports = {
     titleCase,
     generateImpactEquivalent,
     generateNudge,
-    generateMirrorCopy
+    generateMirrorCopy,
   };
 }
